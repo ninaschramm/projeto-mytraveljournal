@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { wrongSchemaError } from "utils/errorUtils";
 import Joi from "joi";
 
 export function validateSchema(schema: Joi.ObjectSchema<any>) {
@@ -10,4 +11,13 @@ export function validateSchema(schema: Joi.ObjectSchema<any>) {
 
         next();
     }
+}
+
+export function verifySchema(...args) {
+    args.map((e) =>
+    {
+        if (!e) {
+            throw wrongSchemaError("Looks like something is missing");
+        }
+    })
 }

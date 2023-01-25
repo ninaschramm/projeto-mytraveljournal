@@ -1,7 +1,8 @@
 import { ReservationType } from "@prisma/client";
 import reservationsRepository from "repositories/reservationsRepository";
 import tripsRepository from "repositories/tripsRepository";
-import { notFoundError, wrongSchemaError } from "utils/errorUtils";
+import { notFoundError } from "utils/errorUtils";
+import { verifySchema } from "middlewares/validateSchemasMiddleware";
 
 async function getReservationsByTrip(userId: number, tripId: number) {
 
@@ -13,10 +14,7 @@ async function getReservationsByTrip(userId: number, tripId: number) {
 
 async function addNewReservation(userId: number, tripId: number, code: string, type: ReservationType, title: string) {
 
-    if (!title || !code || !type) {
-        throw wrongSchemaError("Looks like something is missing");
-    };
-
+    verifySchema(title, code, type);
     await verifyPermission(userId, tripId);
 
     const data = {
@@ -45,15 +43,6 @@ async function verifyPermission(userId: number, tripId: number) {
     };
     return permission
 }
-
-// function verifySchema(...args) {
-//     args.map((e) =>
-//     {
-//         if (!e) {
-//             throw wrongSchemaError("Looks like something is missing");
-//         }
-//     })
-// }
 
 const reservationsServices = {
     getReservationsByTrip,

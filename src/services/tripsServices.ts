@@ -1,5 +1,6 @@
 import tripsRepository from "repositories/tripsRepository";
-import { impossibleDateError, notFoundError, unauthorizedError, wrongSchemaError } from "utils/errorUtils";
+import { impossibleDateError, notFoundError, wrongSchemaError } from "utils/errorUtils";
+import { verifySchema } from "middlewares/validateSchemasMiddleware";
 
 async function getTripsByUser(userId: number) {
     const result = await tripsRepository.getTripsByUser(userId);
@@ -8,9 +9,7 @@ async function getTripsByUser(userId: number) {
 
 async function addNewTrip(userId: number, title: string, startDate: string, endDate: string) {
 
-    if (!title || !startDate || !endDate) {
-        throw wrongSchemaError("Looks like something is missing");
-    }
+    verifySchema(title, startDate, endDate);
 
     if (Date.parse(endDate) < Date.parse(startDate)) {
         throw impossibleDateError();
@@ -26,7 +25,8 @@ async function addNewTrip(userId: number, title: string, startDate: string, endD
         endsAt
       };
 
-    const trip = await tripsRepository.addNewTrip(data)
+    const trip = await tripsRepository.addNewTrip(data);
+    return trip
 }
 
 async function removeTrip(userId: number, tripId: number) {

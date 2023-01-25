@@ -4,7 +4,7 @@ import { createUserSchema, userSchema } from "../schemas/authSchemas";
 
 import { createUser, loginUser } from "../controllers/authControllers";
 
-import { validateSchema } from "../middlewares/ValidateSchema";
+import { validateSchema } from "../middlewares/validateSchemasMiddleware";
 
 const authRouter = Router();
 
