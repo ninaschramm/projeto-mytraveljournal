@@ -15,3 +15,17 @@ export async function getReservationsByTrip(req: AuthenticatedRequest, res: Resp
         errorHandlerMiddleware(err, req, res, next);
     }
 }
+
+export async function addNewReservation(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+    const { userId } = req;
+    const tripId = req.params.tripId;
+    const { title, code, type } = req.body;
+
+    try {
+        const reservations = await reservationsServices.addNewReservation(userId, Number(tripId), code, type, title);
+        return res.status(200).send(reservations)
+    }
+    catch(err) {
+        errorHandlerMiddleware(err, req, res, next);
+    }
+}
