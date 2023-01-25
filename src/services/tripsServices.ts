@@ -1,5 +1,5 @@
 import tripsRepository from "repositories/tripsRepository";
-import { impossibleDateError, unauthorizedError, wrongSchemaError } from "utils/errorUtils";
+import { impossibleDateError, notFoundError, unauthorizedError, wrongSchemaError } from "utils/errorUtils";
 
 async function getTripsByUser(userId: number) {
     const result = await tripsRepository.getTripsByUser(userId);
@@ -33,15 +33,17 @@ async function removeTrip(userId: number, tripId: number) {
 
     const permission = await tripsRepository.verifyUserToTrip(userId, tripId);
     if (!permission) {
-        throw unauthorizedError("You should not be here");
+        throw notFoundError("Sorry, it looks like we couldn't find this trip for you");
     }
+
     const trip = await tripsRepository.removeTrip(tripId);
     return trip;
 }
 
 const tripsServices = {
     getTripsByUser,
-    addNewTrip
+    addNewTrip,
+    removeTrip
 }
 
 export default tripsServices;

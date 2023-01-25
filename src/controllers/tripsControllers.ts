@@ -27,3 +27,16 @@ export async function addNewTrip(req: AuthenticatedRequest, res: Response, next:
         errorHandlerMiddleware(err, req, res, next);
     }
 }
+
+export async function removeTrip(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+    const { userId } = req;
+    const tripId = req.params.tripId;
+
+    try {
+        await tripsServices.removeTrip(userId, Number(tripId));
+        return res.status(204).send("Trip deleted")
+    }
+    catch(err) {
+        errorHandlerMiddleware(err, req, res, next);
+    }
+}
