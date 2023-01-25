@@ -39,3 +39,7 @@ export function duplicatedUsernameError(): AppError {
 export function duplicatedEmailError(): AppError {
   return { type: "conflict", message: "This email is already in use" };
 }
+
+export function impossibleDateError(): AppError {
+  return { type: "wrong_schema", message: "Verify your dates" }
+}

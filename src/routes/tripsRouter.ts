@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { authenticateToken } from "middlewares/authenticationMiddleware";
-import { getTripsByUsers } from "controllers/tripsControllers";
+import { getTripsByUsers, addNewTrip } from "controllers/tripsControllers";
 
 const tripsRouter = Router();
 
 tripsRouter
   .all("/*", authenticateToken)
   .get("/", getTripsByUsers)
-//   .post("/", )
+  .post("/", addNewTrip)
 //   .delete("/:bookingId", );
 
 
