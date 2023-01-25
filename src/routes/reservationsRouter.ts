@@ -1,4 +1,4 @@
-import { addNewReservation, getReservationsByTrip } from "controllers/reservationsControllers";
+import { addNewReservation, getReservationsByTrip, removeReservation } from "controllers/reservationsControllers";
 import { Router } from "express";
 import { authenticateToken } from "middlewares/authenticationMiddleware";
 
@@ -8,6 +8,6 @@ reservationsRouter
   .all("/*", authenticateToken)
   .get("/reservations/:tripId", getReservationsByTrip)
   .post("/reservations/:tripId", addNewReservation)
-//   .delete("/:tripId", removeTrip);
+  .delete("/reservations/:tripId", removeReservation);
 
 export { reservationsRouter };

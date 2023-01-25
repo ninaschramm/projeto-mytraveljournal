@@ -20,9 +20,20 @@ async function addNewReservation(data: Prisma.ReservationsUncheckedCreateInput) 
     return reservation;
 }
 
+async function removeReservation(reservationId: number) {
+    const reservation = await client.reservations.delete({
+        where: {
+            id: reservationId
+        }
+    });
+
+    return reservation;
+}
+
 const reservationsRepository = {
     getReservationsByTrip,
     addNewReservation,
+    removeReservation,
 }
 
 export default reservationsRepository;

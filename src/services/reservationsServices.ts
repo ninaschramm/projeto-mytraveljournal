@@ -30,6 +30,14 @@ async function addNewReservation(userId: number, tripId: number, code: string, t
     return reservation;
 }
 
+async function removeReservation(userId: number, tripId: number, reservationId: number) {
+
+    await verifyPermission(userId, tripId);
+
+    const reservation = await reservationsRepository.removeReservation(reservationId);
+    return reservation;
+}
+
 async function verifyPermission(userId: number, tripId: number) {
     const permission = await tripsRepository.verifyUserToTrip(userId, tripId);
     if (!permission) {
@@ -49,7 +57,8 @@ async function verifyPermission(userId: number, tripId: number) {
 
 const reservationsServices = {
     getReservationsByTrip,
-    addNewReservation
+    addNewReservation,
+    removeReservation,
 }
 
 export default reservationsServices;
