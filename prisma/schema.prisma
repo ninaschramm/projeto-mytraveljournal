@@ -17,7 +17,34 @@ model User {
 }
 
 model Trips {
+  id              Int      @id @default(autoincrement())
+  userId          Int
+  User            User     @relation(fields: [userId], references: [id])
+  Reservations    Reservations[]
+  Posts           Posts[]
+}
+
+model Reservations {
   id        Int      @id @default(autoincrement())
-  userId    Int
-  User      User     @relation(fields: [userId], references: [id])
+  tripId    Int
+  Trips     Trips     @relation(fields: [tripId], references: [id])
+  code      String      @db.VarChar(255)
+  type      ReservationType
+  title     String      @db.VarChar(255)
+}
+
+model Posts {
+  id          Int      @id @default(autoincrement())
+  tripId      Int
+  Trips       Trips     @relation(fields: [tripId], references: [id])
+  text        String   
+  createdAt   DateTime          @default(now())
+  image       String  
+}
+
+enum ReservationType {
+  Hotel
+  Transport
+  Ticket
+  Other
 }
