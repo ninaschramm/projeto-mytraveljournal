@@ -40,10 +40,21 @@ async function removeTrip(userId: number, tripId: number) {
     return trip;
 }
 
+async function getTripInfo(userId: number, tripId: number) {
+
+    const trip = await tripsRepository.verifyUserToTrip(userId, tripId);
+    if (!trip) {
+        throw notFoundError("Sorry, it looks like we couldn't find this trip for you");
+    }
+
+    return trip;
+}
+
 const tripsServices = {
     getTripsByUser,
     addNewTrip,
-    removeTrip
+    removeTrip,
+    getTripInfo
 }
 
 export default tripsServices;
