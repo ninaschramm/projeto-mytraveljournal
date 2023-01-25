@@ -1,7 +1,7 @@
 import { client } from '../../prisma/prisma'
 
 async function insert(email: string, username: string, password: string) {
-    await client.users.create({
+    await client.user.create({
         data: {
             email,
             username,
@@ -11,7 +11,7 @@ async function insert(email: string, username: string, password: string) {
 }
 
 async function findByEmail(email: string) {
-    const verifyEmail = await client.users.findFirst({
+    const verifyEmail = await client.user.findFirst({
       where: {
         email,
       },
@@ -20,10 +20,8 @@ async function findByEmail(email: string) {
     return verifyEmail
   }
   
-  
-
 async function checkUser(username: string) {
-    const user = await client.users.findUnique({
+    const user = await client.user.findFirst({
         where: {
             username
         },

@@ -32,10 +32,10 @@ export function wrongSchemaError(message?: string): AppError {
   return { type: "wrong_schema", message };
 }
 
-export function duplicatedUsernameError(message?: string): AppError {
-  return { type: "unauthorized", message };
+export function duplicatedUsernameError(): AppError {
+  return { type: "conflict", message: "This username is already in use" };
 }
 
-export function duplicatedEmailError(message?: string): AppError {
-  return { type: "unauthorized", message };
+export function duplicatedEmailError(): AppError {
+  return { type: "conflict", message: "This email is already in use" };
 }

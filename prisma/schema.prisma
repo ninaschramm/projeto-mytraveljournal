@@ -11,15 +11,19 @@ model User {
   id              Int               @id @default(autoincrement())
   email           String            @unique @db.VarChar(255)
   password        String            @db.VarChar(255)
+  username        String            @unique @db.VarChar(255)
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
   Trips           Trips[]
 }
 
 model Trips {
-  id              Int      @id @default(autoincrement())
+  id              Int             @id @default(autoincrement())
   userId          Int
-  User            User     @relation(fields: [userId], references: [id])
+  User            User            @relation(fields: [userId], references: [id])
+  title           String          @db.VarChar(255)
+  startsAt        DateTime
+  endsAt          DateTime
   Reservations    Reservations[]
   Posts           Posts[]
 }

@@ -35,9 +35,9 @@ export async function login(login: userData) {
     const user = await getUserOrFail(login);
     const expire = {expiresIn: 60*60*3};
     const data = {
-        id: user.id
+        userId: user.id
     }
-    const token = jwt.sign(data, process.env.TOKEN_SECRET, expire);
+    const token = jwt.sign(data, process.env.JWT_SECRET, expire);
 
     return token;
   }

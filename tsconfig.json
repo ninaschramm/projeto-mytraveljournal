@@ -4,7 +4,8 @@
     "target": "ES6",
     "module": "CommonJS",
     "moduleResolution": "node",
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": "src"
   },
   "ts-node": {
     "esm": true
