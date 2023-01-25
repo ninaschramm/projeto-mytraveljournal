@@ -1,15 +1,12 @@
+import { getReservationsByTrip } from "controllers/reservationsControllers";
 import { Router } from "express";
 import { authenticateToken } from "middlewares/authenticationMiddleware";
 
 const reservationsRouter = Router();
 
-function getList() {
-    return ("Hello, world")
-}
-
 reservationsRouter
   .all("/*", authenticateToken)
-  .get("/:tripId/reservations", getList)
+  .get("/reservations/:tripId", getReservationsByTrip)
 //   .post("/", addNewTrip)
 //   .delete("/:tripId", removeTrip);
 
