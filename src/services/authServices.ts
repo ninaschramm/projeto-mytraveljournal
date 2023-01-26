@@ -3,8 +3,9 @@ import * as bcrypt from 'bcrypt';
 import { userData } from '../types/userTypes';
 import { unauthorizedError, duplicatedEmailError, duplicatedUsernameError } from '../utils/errorUtils';
 import jwt from 'jsonwebtoken';
+import { Prisma } from '@prisma/client';
 
-export async function createUser(user: userData) {
+export async function createUser(user: Prisma.UserUncheckedCreateInput) {
 
     const { email, username, password } = user;
 
