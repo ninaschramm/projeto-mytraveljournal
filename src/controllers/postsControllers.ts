@@ -16,19 +16,19 @@ export async function getPostsByTrip(req: AuthenticatedRequest, res: Response, n
     }
 }
 
-// export async function addNewPost(req: AuthenticatedRequest, res: Response, next: NextFunction) {
-//     const { userId } = req;
-//     const tripId = req.params.tripId;
-//     const { title, code, type } = req.body;
+export async function addNewPost(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+    const { userId } = req;
+    const tripId = req.params.tripId;
+    const { image, text } = req.body;
 
-//     try {
-//         const post = await postsServices.addNewPost(userId, Number(tripId), code, type, title);
-//         return res.status(200).send(Post)
-//     }
-//     catch(err) {
-//         errorHandlerMiddleware(err, req, res, next);
-//     }
-// }
+    try {
+        const post = await postsServices.addNewPost(userId, Number(tripId), image, text);
+        return res.status(200).send(post)
+    }
+    catch(err) {
+        errorHandlerMiddleware(err, req, res, next);
+    }
+}
 
 // export async function removePost(req: AuthenticatedRequest, res: Response, next: NextFunction) {
 //     const { userId } = req;

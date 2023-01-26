@@ -10,21 +10,20 @@ async function getPostsByTrip(userId: number, tripId: number) {
     return result;
 }
 
-// async function addNewPost(userId: number, tripId: number, code: string, type: postType, title: string) {
+async function addNewPost(userId: number, tripId: number, image: string, text: string) {
 
-//     verifySchema(title, code, type);
-//     await verifyPermission(userId, tripId);
+    verifySchema(image, text);
+    await verifyPermission(userId, tripId);
 
-//     const data = {
-//         tripId,
-//         code,
-//         type,
-//         title
-//     }
+    const data = {
+        tripId,
+        image,
+        text
+    }
 
-//     const post = await postsRepository.addNewPost(data);
-//     return post;
-// }
+    const post = await postsRepository.addNewPost(data);
+    return post;
+}
 
 // async function removePost(userId: number, tripId: number, postId: number) {
 
@@ -36,7 +35,7 @@ async function getPostsByTrip(userId: number, tripId: number) {
 
 const postsServices = {
     getPostsByTrip,
-    // addNewPost,
+    addNewPost,
     // removePost,
 }
 
