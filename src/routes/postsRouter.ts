@@ -1,4 +1,4 @@
-import { addNewPost, getPostsByTrip } from "controllers/postsControllers";
+import { addNewPost, getPostsByTrip, removePost } from "controllers/postsControllers";
 import { Router } from "express";
 import { authenticateToken } from "middlewares/authenticationMiddleware";
 
@@ -8,6 +8,6 @@ postsRouter
   .all("/*", authenticateToken)
   .get("/posts/:tripId", getPostsByTrip)
   .post("/posts/:tripId", addNewPost)
-//   .delete("/posts/:tripId", );
+  .delete("/posts/:tripId", removePost);
 
 export { postsRouter };

@@ -25,18 +25,18 @@ async function addNewPost(userId: number, tripId: number, image: string, text: s
     return post;
 }
 
-// async function removePost(userId: number, tripId: number, postId: number) {
+async function removePost(userId: number, tripId: number, postId: number) {
 
-//     await verifyPermission(userId, tripId);
+    await verifyPermission(userId, tripId);
 
-//     const post = await postsRepository.removePost(postId);
-//     return post;
-// }
+    const post = await postsRepository.removePost(postId);
+    return post;
+}
 
 const postsServices = {
     getPostsByTrip,
     addNewPost,
-    // removePost,
+    removePost,
 }
 
 export default postsServices;

@@ -30,16 +30,16 @@ export async function addNewPost(req: AuthenticatedRequest, res: Response, next:
     }
 }
 
-// export async function removePost(req: AuthenticatedRequest, res: Response, next: NextFunction) {
-//     const { userId } = req;
-//     const tripId = req.params.tripId;
-//     const { postId } = req.body;
+export async function removePost(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+    const { userId } = req;
+    const tripId = req.params.tripId;
+    const { postId } = req.body;
 
-//     try {
-//         await postsServices.removePost(userId, Number(tripId), postId);
-//         return res.status(204).send("Post deleted");
-//     }
-//     catch(err) {
-//         errorHandlerMiddleware(err, req, res, next);
-//     }
-// }
+    try {
+        await postsServices.removePost(userId, Number(tripId), postId);
+        return res.status(204).send("Post deleted");
+    }
+    catch(err) {
+        errorHandlerMiddleware(err, req, res, next);
+    }
+}
