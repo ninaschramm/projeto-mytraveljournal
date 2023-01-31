@@ -8,6 +8,6 @@ postsRouter
   .all("/*", authenticateToken)
   .get("/posts/:tripId", getPostsByTrip)
   .post("/posts/:tripId", addNewPost)
-  .delete("/posts/:tripId", removePost);
+  .delete("/posts/:tripId/:postId", removePost);
 
 export { postsRouter };

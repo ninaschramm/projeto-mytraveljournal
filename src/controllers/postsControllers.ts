@@ -32,11 +32,10 @@ export async function addNewPost(req: AuthenticatedRequest, res: Response, next:
 
 export async function removePost(req: AuthenticatedRequest, res: Response, next: NextFunction) {
     const { userId } = req;
-    const tripId = req.params.tripId;
-    const { postId } = req.body;
+    const { tripId, postId } = req.params;
 
     try {
-        await postsServices.removePost(userId, Number(tripId), postId);
+        await postsServices.removePost(userId, Number(tripId), Number(postId));
         return res.status(204).send("Post deleted");
     }
     catch(err) {
