@@ -8,6 +8,6 @@ reservationsRouter
   .all("/*", authenticateToken)
   .get("/reservations/:tripId", getReservationsByTrip)
   .post("/reservations/:tripId", addNewReservation)
-  .delete("/reservations/:tripId", removeReservation);
+  .delete("/reservations/:tripId/:reservationId", removeReservation);
 
 export { reservationsRouter };

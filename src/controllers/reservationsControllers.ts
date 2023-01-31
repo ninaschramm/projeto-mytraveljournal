@@ -32,11 +32,10 @@ export async function addNewReservation(req: AuthenticatedRequest, res: Response
 
 export async function removeReservation(req: AuthenticatedRequest, res: Response, next: NextFunction) {
     const { userId } = req;
-    const tripId = req.params.tripId;
-    const { reservationId } = req.body;
+    const { tripId, reservationId } = req.params;
 
     try {
-        await reservationsServices.removeReservation(userId, Number(tripId), reservationId);
+        await reservationsServices.removeReservation(userId, Number(tripId), Number(reservationId));
         return res.status(204).send("Reservation deleted");
     }
     catch(err) {
