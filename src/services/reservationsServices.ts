@@ -23,7 +23,7 @@ async function addNewReservation(userId: number, tripId: number, code: string, t
         type,
         title
     }
-
+    console.log(data)
     const reservation = await reservationsRepository.addNewReservation(data);
     return reservation;
 }

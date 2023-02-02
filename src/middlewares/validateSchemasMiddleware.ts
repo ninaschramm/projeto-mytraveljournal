@@ -13,7 +13,7 @@ export function validateSchema(schema: Joi.ObjectSchema<any>) {
     }
 }
 
-export function verifySchema(...args) {
+export function verifySchema(...args: string[]) {
     args.map((e) =>
     {
         if (!e) {
