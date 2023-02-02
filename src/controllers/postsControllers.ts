@@ -23,7 +23,7 @@ export async function addNewPost(req: AuthenticatedRequest, res: Response, next:
 
     try {
         const post = await postsServices.addNewPost(userId, Number(tripId), image, text);
-        return res.status(200).send(post)
+        return res.status(201).send(post)
     }
     catch(err) {
         errorHandlerMiddleware(err, req, res, next);
