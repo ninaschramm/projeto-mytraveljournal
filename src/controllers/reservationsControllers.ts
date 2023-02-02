@@ -23,7 +23,7 @@ export async function addNewReservation(req: AuthenticatedRequest, res: Response
 
     try {
         const reservation = await reservationsServices.addNewReservation(userId, Number(tripId), code, type, title);
-        return res.status(200).send(reservation)
+        return res.status(201).send(reservation)
     }
     catch(err) {
         errorHandlerMiddleware(err, req, res, next);

@@ -5,7 +5,7 @@ import { authenticateToken } from "middlewares/authenticationMiddleware";
 const reservationsRouter = Router();
 
 reservationsRouter
-  .all("/*", authenticateToken)
+  .all("/reservations/*", authenticateToken)
   .get("/reservations/:tripId", getReservationsByTrip)
   .post("/reservations/:tripId", addNewReservation)
   .delete("/reservations/:tripId/:reservationId", removeReservation);
